@@ -1,0 +1,18 @@
+<mat-card class="card-width m-4">
+    <mat-card-header>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title [matTooltip]="'productName'"> productName </mat-card-title>
+        <mat-card-subtitle [matTooltip]="'brandName'"> brandName </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="'https://material.angular.io/assets/img/examples/shiba2.jpg'">
+    <mat-card-content>
+       productDescription
+    </mat-card-content>
+    <mat-card-actions class="d-flex justify-content-between">
+        <div class="d-flex align-items-center m-2">productPrice</div>
+        <div class="">
+            <button class="m-2" mat-mini-fab color="primary" matTooltip="Edit">edit</button>
+            <button class="m-2" mat-mini-fab color="primary" matTooltip="Delete">delete</button>
+        </div>
+    </mat-card-actions>
+</mat-card>
