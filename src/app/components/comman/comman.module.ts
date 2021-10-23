@@ -9,10 +9,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedDialogComponent } from './shared-dialog/shared-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     ItemCardComponent,
+    SharedDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatDialogModule,
   ],
   exports: [
     NgbModule,
@@ -37,6 +41,9 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     ItemCardComponent,
     MatIconModule,
-  ]
+    SharedDialogComponent,
+    MatDialogModule
+  ],
+  entryComponents: [SharedDialogComponent]
 })
 export class CommanSharedModule { }

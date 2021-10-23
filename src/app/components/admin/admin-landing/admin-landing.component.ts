@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { emptyItem, Item } from 'src/app/models/item.model';
 import { AdminService } from 'src/app/services/admin.service';
+import { defaultItemsList } from 'src/default-items';
 
 @Component({
   selector: 'app-admin-landing',
@@ -24,6 +25,11 @@ export class AdminLandingComponent implements OnInit {
     this.itemList = [];
     const storedItems = localStorage.getItem("storedItems");
     if(storedItems) this.itemList = JSON.parse(storedItems);
+    
+    if(!this.itemList.length){
+      this.itemList = defaultItemsList;
+      localStorage.setItem("storedItems", JSON.stringify(defaultItemsList));
+    }
   }
 
   addItem(){

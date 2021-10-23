@@ -24,14 +24,8 @@ export class ItemCardComponent implements OnInit {
   }
 
   deleteItem(){
-    let storedItems = JSON.parse(localStorage.getItem("storedItems") || "");
-    if(storedItems){
-      let ind = 0;
-      ind = storedItems.findIndex((el: Item) => el.productId === this.productDetails.productId);
-      storedItems.splice(ind, 1);
-      localStorage.setItem("storedItems", JSON.stringify(storedItems));
-      this.adminService.updateItemList("updateList");
-    }
+    this.adminService.deleteItem(this.productDetails);
+    this.adminService.updateItemList("updateList");
   }
 
 }

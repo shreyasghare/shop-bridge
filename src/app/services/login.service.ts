@@ -10,11 +10,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
   currentUser: any;
 
-  validateUser(userName:string, password:string){
+  validateUser(userName:string, password:string):boolean{
     // api call to check user is valid or not
     let userDetails = adminList.find(user => user.userName === userName && user.password === password);
     if(userDetails?.userId) this.setCurrentUser = userDetails;
-    return userDetails?.userId;
+    return userDetails?.userId ? true : false;
   }
 
   get getCurrentUser(){

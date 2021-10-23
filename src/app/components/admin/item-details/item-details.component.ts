@@ -47,13 +47,11 @@ export class ItemDetailsComponent implements OnInit {
     });
     
     if(this.requestedAction === 'edit'){
-      let currentIndex = itemsData.findIndex((el: Item) => el.productId === currentItem.productId);
-      itemsData[currentIndex] = currentItem;
+      this.adminService.updateItem(itemsData, currentItem);
     }
     else {
-      itemsData.push(currentItem);
+      this.adminService.addItem(itemsData, currentItem);
     }
-    localStorage.setItem("storedItems", JSON.stringify(itemsData));
     this.router.navigateByUrl("/admin");
   }
 
