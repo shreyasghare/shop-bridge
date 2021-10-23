@@ -1,45 +1,50 @@
-<div class="" *ngIf="(requestedAction === 'edit' && selectedItem.productId > 0) || requestedAction === 'add' ">
-    <form [formGroup]="itemDetailsForm" (ngSubmit)="onSubmit()">
-        <div class="">
-            <mat-form-field>
-                <mat-label>Product Id</mat-label>
-                <input type="number" matInput id="productId" name="productId" formControlName="productId">
-            </mat-form-field>
-        </div>
-        <div class="">
-            <mat-form-field>
-                <mat-label>Product Name</mat-label>
-                <input type="text" matInput id="productName" name="productName" formControlName="productName">
-            </mat-form-field>
-        </div>
-        <div class="">
-            <mat-form-field>
-                <mat-label>Brand Name</mat-label>
-                <input type="text" matInput id="brandName" name="brandName" formControlName="brandName">
-            </mat-form-field>
-        </div>
-        <div class="">
-            <mat-form-field>
-                <mat-label>Product Image Url</mat-label>
-                <input type="text" matInput id="productImageUrl" name="productImageUrl" formControlName="productImageUrl">
-            </mat-form-field>
-        </div>
-        <div class="">
-            <mat-form-field>
-                <mat-label>Product Description</mat-label>
-                <input type="text" matInput id="productDescription" name="productDescription" formControlName="productDescription">
-            </mat-form-field>
-        </div>
-        <div class="">
-            <mat-form-field>
-                <mat-label>Product Price</mat-label>
-                <input type="number" matInput id="productPrice" name="productPrice" formControlName="productPrice">
-            </mat-form-field>
-        </div>
-        <button class="m-1" mat-raised-button color="primary">Preview</button>
-        <button class="m-1" mat-raised-button color="primary" type="submit" > {{requestedAction === 'edit' ? "Update" : "Save"}} </button>
-    </form>
+<div class="d-flex col-12" *ngIf="(requestedAction === 'edit' && selectedItem.productId !== '') || requestedAction === 'add' ">
+    <div class="col-6">
+        <form class="m-4" [formGroup]="itemDetailsForm">
+            <div class="">
+                <mat-form-field>
+                    <mat-label>Product Id</mat-label>
+                    <input type="text" matInput id="productId" name="productId" formControlName="productId">
+                </mat-form-field>
+            </div>
+            <div class="">
+                <mat-form-field>
+                    <mat-label>Product Name</mat-label>
+                    <input type="text" matInput id="productName" name="productName" formControlName="productName">
+                </mat-form-field>
+            </div>
+            <div class="">
+                <mat-form-field>
+                    <mat-label>Brand Name</mat-label>
+                    <input type="text" matInput id="brandName" name="brandName" formControlName="brandName">
+                </mat-form-field>
+            </div>
+            <div class="">
+                <mat-form-field>
+                    <mat-label>Product Image Url</mat-label>
+                    <input type="text" matInput id="productImageUrl" name="productImageUrl" formControlName="productImageUrl">
+                </mat-form-field>
+            </div>
+            <div class="">
+                <mat-form-field>
+                    <mat-label>Product Description</mat-label>
+                    <input type="text" matInput id="productDescription" name="productDescription" formControlName="productDescription">
+                </mat-form-field>
+            </div>
+            <div class="">
+                <mat-form-field>
+                    <mat-label>Product Price</mat-label>
+                    <input type="number" matInput id="productPrice" name="productPrice" formControlName="productPrice">
+                </mat-form-field>
+            </div>
+            <button class="m-1" mat-raised-button color="primary" (click)="showPreview()">Preview</button>
+            <button class="m-1" mat-raised-button color="primary" type="submit" (click)="onSubmit()"> {{requestedAction === 'edit' ? "Update" : "Save"}} </button>
+        </form>
+    </div>
+    <div class="col-6">
+        <app-item-card [isShow]="isShow" [productDetails]="itemDetailsForm.value"></app-item-card>
+    </div>
 </div>
-<div class="" *ngIf="requestedAction === 'edit' && selectedItem.productId === 0">
+<div class="" *ngIf="requestedAction === 'edit' && selectedItem.productId === ''">
     <h2>No Data Found</h2>
 </div>

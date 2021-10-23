@@ -1,11 +1,11 @@
 <div class="row">
-    <ng-container>
-        <app-item-card></app-item-card>
+    <ng-container *ngFor="let obj of itemList">
+        <app-item-card [productDetails]="obj" [isShow]="true" [isPreview]="false"></app-item-card>
     </ng-container>
 </div>
 <div class="position-fixed add-btn-position">
     <button class="m-2" mat-mini-fab color="primary" matTooltip="Add"
         (click)="addItem()">
-        Add
+        <mat-icon>add</mat-icon>
     </button>
 </div>

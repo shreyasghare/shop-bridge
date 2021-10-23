@@ -19,23 +19,46 @@ export class ItemDetailsComponent implements OnInit {
   requestedAction: string = "";
   selectedItem: Item = emptyItem();
   itemDetailsForm: FormGroup = this.formBuilder.group({});
+  isShow: boolean = false;
 
   ngOnInit(): void {
     this.requestedAction = this.activatedRoute.snapshot.data?.request;
-    this.selectedItem = this.adminService.getSelectedItem;
+    if(this.requestedAction === 'edit'){
+      this.selectedItem = this.adminService.getSelectedItem;
+    }
     console.log('this.adminService.getSelectedItem:', this.adminService.getSelectedItem)
     this.itemDetailsForm = new FormGroup({
-      productId: new FormControl({value: this.shoppingService.getRandomNumber, disabled: true}),
-      productName: new FormControl(""),
-      brandName: new FormControl(""),
-      productImageUrl: new FormControl(""),
-      productDescription: new FormControl(""), 
-      productPrice: new FormControl("") 
+      productId: new FormControl({value: this.selectedItem.productId || this.shoppingService.getRandomNumber, disabled: true}),
+      productName: new FormControl(this.selectedItem.productName),
+      brandName: new FormControl(this.selectedItem.brandName),
+      productImageUrl: new FormControl(this.selectedItem.productImageUrl),
+      productDescription: new FormControl(this.selectedItem.productDescription),
+      productPrice: new FormControl(this.selectedItem.productPrice) 
     });
   }
 
   onSubmit(){
+    const storedItems = localStorage.getItem("storedItems");
+    let itemsData: any = [];
+    if(storedItems) [... itemsData] = JSON.parse(storedItems);
+    let currentItem: any = {};
+    Object.keys(this.itemDetailsForm.controls).forEach(el => {
+      currentItem[el] = this.itemDetailsForm.controls[el].value;
+    });
+    
+    if(this.requestedAction === 'edit'){
+      let currentIndex = itemsData.findIndex((el: Item) => el.productId === currentItem.productId);
+      itemsData[currentIndex] = currentItem;
+    }
+    else {
+      itemsData.push(currentItem);
+    }
+    localStorage.setItem("storedItems", JSON.stringify(itemsData));
+    this.router.navigateByUrl("/admin");
+  }
 
+  showPreview(){
+    this.isShow = true;
   }
 
 }

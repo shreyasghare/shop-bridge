@@ -1,5 +1,5 @@
 export interface Item {
-    productId: number,
+    productId: string,
     productName: string,
     brandName: string,
     productImageUrl: string,
@@ -9,7 +9,7 @@ export interface Item {
 
 export function emptyItem(): Item{
     return {
-        productId: 0,
+        productId: "",
         productName: "",
         brandName: "",
         productImageUrl: "",

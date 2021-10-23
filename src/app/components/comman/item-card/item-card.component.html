@@ -1,18 +1,27 @@
-<mat-card class="card-width m-4">
+<mat-card class="card-width m-4" *ngIf="isShow">
     <mat-card-header>
         <!-- <div mat-card-avatar class="example-header-image"></div> -->
-        <mat-card-title [matTooltip]="'productName'"> productName </mat-card-title>
-        <mat-card-subtitle [matTooltip]="'brandName'"> brandName </mat-card-subtitle>
+        <mat-card-title [matTooltip]="productDetails.productName"> {{productDetails.productName}} </mat-card-title>
+        <mat-card-subtitle [matTooltip]="productDetails.brandName"> {{productDetails.brandName}} </mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="'https://material.angular.io/assets/img/examples/shiba2.jpg'">
+    <!-- <img mat-card-image [src]="'https://material.angular.io/assets/img/examples/shiba2.jpg'"> -->
+    <!-- https://material.angular.io/assets/img/examples/shiba2.jpg -->
+    <img mat-card-image [src]="productDetails.productImageUrl">
     <mat-card-content>
-       productDescription
+        {{productDetails.productDescription}}
     </mat-card-content>
     <mat-card-actions class="d-flex justify-content-between">
-        <div class="d-flex align-items-center m-2">productPrice</div>
-        <div class="">
-            <button class="m-2" mat-mini-fab color="primary" matTooltip="Edit">edit</button>
-            <button class="m-2" mat-mini-fab color="primary" matTooltip="Delete">delete</button>
+        <div class="d-flex align-items-center m-2">{{productDetails.productPrice | currency : "INR"}}</div>
+        <div class="" *ngIf="!isPreview">
+            
+            <button class="m-2" mat-mini-fab color="primary" matTooltip="Edit"
+                (click)="editItem()">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button class="m-2" mat-mini-fab color="primary" matTooltip="Delete"
+                (click)="deleteItem()">
+                <mat-icon>delete</mat-icon>
+            </button>
         </div>
     </mat-card-actions>
 </mat-card>

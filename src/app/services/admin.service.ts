@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ItemDetailsComponent } from '../components/admin/item-details/item-details.component';
 import { emptyItem, Item,  } from '../models/item.model';
 
@@ -16,5 +17,11 @@ export class AdminService {
   set setSelectedItem(currentItem: Item){
     this.selectedItem = {... currentItem};
   }
+
+  itemListSubject: Subject<string> = new Subject();
+  updateItemList(value:string){
+    this.itemListSubject.next(value);
+  }
+  itemListObservable = this.itemListSubject.asObservable();
 
 }

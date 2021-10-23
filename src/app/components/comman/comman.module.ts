@@ -8,6 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemCardComponent } from './item-card/item-card.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ItemCardComponent } from './item-card/item-card.component';
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   exports: [
     NgbModule,
@@ -34,6 +36,7 @@ import { ItemCardComponent } from './item-card/item-card.component';
     FormsModule,
     ReactiveFormsModule,
     ItemCardComponent,
+    MatIconModule,
   ]
 })
 export class CommanSharedModule { }
