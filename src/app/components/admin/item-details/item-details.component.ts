@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { emptyItem, Item } from 'src/app/models/item.model';
 import { AdminService } from 'src/app/services/admin.service';
@@ -29,11 +29,11 @@ export class ItemDetailsComponent implements OnInit {
     console.log('this.adminService.getSelectedItem:', this.adminService.getSelectedItem)
     this.itemDetailsForm = new FormGroup({
       productId: new FormControl({value: this.selectedItem.productId || this.shoppingService.getRandomNumber, disabled: true}),
-      productName: new FormControl(this.selectedItem.productName),
-      brandName: new FormControl(this.selectedItem.brandName),
-      productImageUrl: new FormControl(this.selectedItem.productImageUrl),
-      productDescription: new FormControl(this.selectedItem.productDescription),
-      productPrice: new FormControl(this.selectedItem.productPrice) 
+      productName: new FormControl(this.selectedItem.productName, [Validators.required]),
+      brandName: new FormControl(this.selectedItem.brandName, [Validators.required]),
+      productImageUrl: new FormControl(this.selectedItem.productImageUrl, [Validators.required]),
+      productDescription: new FormControl(this.selectedItem.productDescription, [Validators.required]),
+      productPrice: new FormControl(this.selectedItem.productPrice || "", [Validators.required, Validators.min(1),]) 
     });
   }
 

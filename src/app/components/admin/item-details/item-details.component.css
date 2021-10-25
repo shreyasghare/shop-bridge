@@ -1,0 +1,7 @@
+.product-desc-textarea{
+    height: 4rem;
+    resize: none;
+}
+.mat-form-field{
+    min-width: 24em;
+}

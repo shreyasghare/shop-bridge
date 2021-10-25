@@ -28,7 +28,9 @@
             <div class="">
                 <mat-form-field>
                     <mat-label>Product Description</mat-label>
-                    <input type="text" matInput id="productDescription" name="productDescription" formControlName="productDescription">
+                    <!-- <input type="text" matInput id="productDescription" name="productDescription" formControlName="productDescription"> -->
+                    <textarea type="text" matInput id="productDescription" name="productDescription" 
+                        class="product-desc-textarea" formControlName="productDescription"></textarea>
                 </mat-form-field>
             </div>
             <div class="">
@@ -38,7 +40,7 @@
                 </mat-form-field>
             </div>
             <button class="m-1" mat-raised-button color="primary" (click)="showPreview()">Preview</button>
-            <button class="m-1" mat-raised-button color="primary" type="submit" (click)="onSubmit()"> {{requestedAction === 'edit' ? "Update" : "Save"}} </button>
+            <button class="m-1" mat-raised-button color="primary" [disabled]="itemDetailsForm.invalid" type="submit" (click)="onSubmit()"> {{requestedAction === 'edit' ? "Update" : "Save"}} </button>
         </form>
     </div>
     <div class="col-6">

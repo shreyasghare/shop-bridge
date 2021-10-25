@@ -11,6 +11,7 @@ import { ItemCardComponent } from './item-card/item-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedDialogComponent } from './shared-dialog/shared-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     MatIconModule,
     MatDialogModule,
+    TextFieldModule,
   ],
   exports: [
     NgbModule,
@@ -42,7 +44,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ItemCardComponent,
     MatIconModule,
     SharedDialogComponent,
-    MatDialogModule
+    MatDialogModule,
+    TextFieldModule,
   ],
   entryComponents: [SharedDialogComponent]
 })
